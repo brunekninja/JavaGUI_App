@@ -8,7 +8,7 @@ public class App {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame dialog = new dialog("Application");
+                JFrame dialog = new Dialog("Application");
 
                 dialog.setSize(500, 400);
                 dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,11 +1,8 @@
-import paneActions.CancelButton;
-import paneActions.SaveButton;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class dialog extends JFrame{
+public class Dialog extends JFrame{
     private JPanel panel;
     private JTabbedPane tabs;
     private JList type;
@@ -16,7 +13,10 @@ public class dialog extends JFrame{
     private JButton saveButton;
     private JButton cancelButton;
 
-    public dialog(String title){
+    public Dialog() throws HeadlessException {
+    }
+
+    public Dialog(String title){
         super(title);
 
         Container cont = getContentPane();
