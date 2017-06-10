@@ -1,4 +1,5 @@
 import paneActions.CancelButton;
+import paneActions.SaveButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,14 +18,30 @@ public class dialog extends JFrame{
 
     public dialog(String title){
         super(title);
+
         Container cont = getContentPane();
 
         cont.add(panel);
 
         ActionListener cancelButtonListener = new CancelButton();
+        ActionListener saveButtonListener = new SaveButton();
+
         cancelButton.addActionListener(cancelButtonListener);
+        saveButton.addActionListener(saveButtonListener);
+
     }
 
+    public JTextField getInputName() {
+        return inputName;
+    }
+
+    public JComboBox getComboType() {
+        return comboType;
+    }
+
+    public JTextField getPrice() {
+        return price;
+    }
 }
 
 
