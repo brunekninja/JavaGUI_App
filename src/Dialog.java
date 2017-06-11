@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Dialog extends JFrame{
+public class Dialog extends JFrame implements ActionListener{
     private JPanel panel;
     private JTabbedPane tabs;
     private JList type;
@@ -23,24 +24,34 @@ public class Dialog extends JFrame{
 
         cont.add(panel);
 
+        // action listeners implementation
         ActionListener cancelButtonListener = new CancelButton();
-        ActionListener saveButtonListener = new SaveButton();
 
+        // call action listeners and pass them to classes
         cancelButton.addActionListener(cancelButtonListener);
-        saveButton.addActionListener(saveButtonListener);
 
+        inputName.addActionListener(this);
+        saveButton.addActionListener(this);
+        price.addActionListener(this);
+        comboType.addActionListener(this);
     }
 
-    public JTextField getInputName() {
-        return inputName;
+    public void actionPerformed(ActionEvent e){
+
+        System.out.println("Click " + price.getText());
+
+    }
+}
+
+class Values {
+    private String nameValue;
+
+    public void setNameValue(String nameValue) {
+        this.nameValue = nameValue;
     }
 
-    public JComboBox getComboType() {
-        return comboType;
-    }
-
-    public JTextField getPrice() {
-        return price;
+    public String getNameValue() {
+        return this.nameValue;
     }
 }
 
