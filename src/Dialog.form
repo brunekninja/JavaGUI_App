@@ -31,7 +31,10 @@
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <model/>
+                  <selectionMode value="0"/>
+                </properties>
               </component>
               <component id="42b45" class="javax.swing.JTable" binding="detailedlist">
                 <constraints>

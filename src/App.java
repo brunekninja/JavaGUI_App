@@ -8,13 +8,7 @@ public class App {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DbConn dbConn = new DbConn();
-
                 JFrame Dialog = new Dialog("Application");
-
-                dbConn.runConn();
-
-                dbConn.data();
 
                 Dialog.setSize(500, 400);
                 Dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

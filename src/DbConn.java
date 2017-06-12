@@ -2,7 +2,6 @@ import sun.misc.Version;
 
 import java.sql.*;
 import java.util.LinkedList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,13 +9,14 @@ import java.util.logging.Logger;
  * Database connection
  */
 public class DbConn {
-    private LinkedList data;
     private Connection con = null;
     private Statement st = null;
     private ResultSet rs = null;
 
+    /**
+     * create database connection method, try catch for error exception handling
+     */
     public void runConn() {
-
 
         String url = "jdbc:mysql://localhost:3306/java_db?serverTimezone=UTC";
         String user = "root";
@@ -26,7 +26,6 @@ public class DbConn {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, password);
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM products;");
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Version.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
@@ -36,14 +35,25 @@ public class DbConn {
         }
     }
 
-    public LinkedList data(){
+    /**
+     *
+     * @param query
+     * gets database SQL query
+     * @param column
+     * select which database column to loop and execute
+     * @return
+     */
+    public LinkedList data(String query, String column){
         LinkedList<String> arr = new LinkedList<>();
 
         try {
+            //run sql query passed through function
+            rs = st.executeQuery(query);
+
             while (rs.next()) {
-                arr.add(rs.getString("name"));
+                arr.add(rs.getString(column));
             }
-            System.out.println(arr);
+
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Version.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
@@ -64,7 +74,7 @@ public class DbConn {
                 lgr.log(Level.WARNING, ex.getMessage(), ex);
             }
         }
-        return data;
+        return arr;
     }
 
 
