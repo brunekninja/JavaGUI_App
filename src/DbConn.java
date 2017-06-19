@@ -51,7 +51,12 @@ public class DbConn {
             rs = st.executeQuery(query);
 
             while (rs.next()) {
-                arr.add(rs.getString(column));
+                if(column != null){
+                    arr.add(rs.getString(column));
+                } else {
+                    arr.add(rs.getString("id"));
+                    arr.add(rs.getString("name"));
+                }
             }
 
         } catch (SQLException ex) {

@@ -20,7 +20,7 @@ public class Dialog extends JFrame implements ActionListener{
     private JButton cancelButton;
 
     private LinkedList data;
-
+    private LinkedList details;
     /**
      * Dialog Constructor
      * @throws HeadlessException
@@ -31,6 +31,7 @@ public class Dialog extends JFrame implements ActionListener{
     /**
      * Main dialog method, setup
      * @param title
+     * Main title of dialog
      */
     public Dialog(String title){
         super(title);
@@ -51,11 +52,17 @@ public class Dialog extends JFrame implements ActionListener{
         comboType.addActionListener(this);
 
         DbConn listType = new DbConn();
+        DbConn listDetail = new DbConn();
 
         listType.runConn();
+        listDetail.runConn();
 
         // add element from database to list, all other stuff is defined in form XML
         data = listType.data("SELECT * FROM type;", "name");
+        details = listDetail.data("SELECT * FROM products;", null);
+
+
+        System.out.println(details);
 
         // add data to exsiting model of list
         DefaultListModel model = (DefaultListModel) type.getModel();
